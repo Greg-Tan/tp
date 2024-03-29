@@ -8,7 +8,7 @@ import seedu.address.model.Model;
  */
 public class MeetingsCommand extends Command {
     public static final String COMMAND_WORD = "meetings";
-    public static final String SHOWING_MEETINGS_MESSAGE = "Opened meetings window.";
+    public static final String SHOWING_MEETINGS_MESSAGE = "Opened this week's meetings window.";
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult(SHOWING_MEETINGS_MESSAGE, false, true, false);

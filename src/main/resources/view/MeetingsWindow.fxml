@@ -13,7 +13,7 @@
         <Image url="@/images/meetings_icon.png" />
     </icons>
     <scene>
-        <Scene width="600" height="450">
+        <Scene width="800" height="600">
             <stylesheets>
                 <URL value="@MeetingsWindow.css" />
             </stylesheets>

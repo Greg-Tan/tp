@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.temporal.IsoFields;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
@@ -12,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Meeting;
 
 /**
  * Controller for a help page
@@ -43,7 +45,7 @@ public class MeetingsWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the meetings window and displays the list of meetings.
+     * Shows the meetings window and displays the list of meetings for this week.
      * @throws IllegalStateException
      *     <ul>
      *         <li>
@@ -61,21 +63,23 @@ public class MeetingsWindow extends UiPart<Stage> {
      *     </ul>
      */
     public void displayMeetings() {
-        logger.fine("Showing meetings window for the application.");
+        logger.fine("Showing this week's meetings window for the application.");
         getRoot().show();
         getRoot().centerOnScreen();
 
-        List<Person> people = logic.getFilteredPersonList();
-        people = people.stream()
-                .filter(p -> p.getMeeting() != null)
+        List<Meeting> meetings = logic.getMeetingList();
+        meetings = meetings.stream()
+                .filter(m -> m.getMeeting() != null)
+                .filter(m -> m.getMeeting().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) ==
+                        LocalDateTime.now().get(IsoFields.WEEK_OF_WEEK_BASED_YEAR))
                 .collect(Collectors.toList());
-        people.sort(Comparator.comparing(Person::getMeeting));
+        meetings.sort(Comparator.comparing(Meeting::getMeeting));
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are all the meetings in chronological order: \n");
+        sb.append("Here are all of this week's meetings in chronological order: \n");
         int count = 1;
-        for (Person p : people) {
-            sb.append(count).append("  |  ").append(p.getMeeting().toString())
-                    .append(" with: ").append(p.getName()).append("\n");
+        for (Meeting m : meetings) {
+            sb.append(count).append("  |  ").append(m.toString())
+                    .append(" with: ").append(m.getName()).append("\n");
             count++;
         }
         meetingsMessage.setText(sb.toString());

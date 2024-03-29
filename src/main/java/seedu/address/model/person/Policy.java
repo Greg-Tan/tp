@@ -9,7 +9,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a policy associated with a person.
- * Guarantees: immutable; policyName is valid as declared in {@link #isValidField(String)}
+ * Guarantees: immutable; policyName is valid as declared in {@link #isValidPolicy(String)}
  */
 public class Policy {
 
