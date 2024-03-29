@@ -6,8 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.List;
 
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -23,6 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final List<Integer> filteredIndexes;
     private final FilteredList<Meeting> meetingList;
 
     /**
@@ -167,6 +171,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+
+        List<Person> originalList = addressBook.getPersonList();
+        List<Integer> indexes = filteredPersons.stream()
+                .map(person -> originalList.indexOf(person))
+                .collect(Collectors.toList());
+        filteredIndexes = indexes;
     }
 
     @Override
@@ -174,6 +184,22 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         meetingList.setPredicate(predicate);
     }
+
+    // Returns the original indices of the filtered list of Persons
+    @Override
+    public ObservableList<Integer> getOriginalIndexesOfFilteredPersons() {
+        List<Person> originalList = addressBook.getPersonList();
+        List<Integer> indexes = filteredPersons.stream()
+                .map(person -> originalList.indexOf(person))
+                .collect(Collectors.toList());
+            return FXCollections.observableArrayList(indexes);
+    }
+
+//    public int findOriginalIndexOfPerson(Person person) {
+//        List<Person> originalList = addressBook.getPersonList(); // Assuming this method returns the original list of persons
+//        int index = originalList.indexOf(person);
+//        return index;
+//    }
 
     @Override
     public boolean equals(Object other) {

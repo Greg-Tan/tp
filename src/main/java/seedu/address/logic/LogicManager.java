@@ -71,6 +71,10 @@ public class LogicManager implements Logic {
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
+    @Override
+    public ObservableList<Integer> getOriginalIndexesOfFilteredPersons() {
+        return model.getOriginalIndexesOfFilteredPersons();
+    }
 
     @Override
     public ObservableList<Meeting> getMeetingList() {

@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,16 +24,23 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, ObservableList<Integer> indexList) {
         super(FXML);
+        logger.info("this is the original index list: "+ indexList.toString());
+        logger.info("this is the current person list: "+ personList.toString());
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new PersonListViewCell(indexList));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
+        private ObservableList<Integer> indexList;
+
+        PersonListViewCell(ObservableList<Integer> indexList) {
+            this.indexList = indexList; // Initialize the indexList field
+        }
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
@@ -41,7 +49,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                int displayIndex = indexList.get(getIndex()) + 1;
+                logger.info("this is the person's index " + displayIndex);
+                setGraphic(new PersonCard(person, displayIndex).getRoot());
             }
         }
     }
