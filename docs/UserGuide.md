@@ -1,4 +1,4 @@
----
+1---
   layout: default.md
   title: "User Guide"
   pageNav: 3
@@ -76,42 +76,101 @@ InsureBook is a **desktop app for insurance agents to manage potential and exist
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Adding a person: `add`
+### Viewing help : `help`
+Shows the link to the User Guide and Command Summary of InsureBook.
 
-Adds a client, together with their name, phone number and email into the address book.
+Format: `help`
 
-Format: add n/NAME p/PHONENUMBER e/EMAIL
+### Adding a client : `add`
+
+Adds a client, together with their name, phone number, email, address and meeting date and time into InsureBook.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME [t/TAG]...`
+
+<div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
+    <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
+    Meeting field input cannot be a date and time in the past! 
+</div>
+<br/>
+<div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
+    <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
+    It is optional for the client to have tags. A client can have any number of tags (including 0).
+</div>
 
 Examples:
-* `add n/Gregorius p/91234567 e/giddy@gmail.com`
-* `add n/Rahrahsan p/90019001 e/rahrah@outlook.com`
-* `add n/Jim p/88888888 e/jimtyms@yahoo.com`
+* `add n/Jenny Chen p/91234567 e/jenjenc@gmail.com a/688, Yio Chu Kang Ave 5, #04-25 m/2024-10-12 14:00`
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 m/2024-07-12 12:00 t/friends`
+* `add n/Jack Daniel p/91118932 e/jackys@hotmail.com a/291, Woodlands Dr 89, #08-56 m/2025-02-20 10:00 t/acquaintence t/schoolmate`
 
-### Listing all persons : `list`
+### Listing all clients : `list`
 
-Shows a list of all persons in the address book.
+Shows a list of all clients in InsureBook.
 
 Format: `list`
 
-### Deleting a person : `delete`
+### Editing a client : `edit`
 
-Removes an existing client based on their index from the address book.
+Edits an existing client in InsureBook.
+
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MEETING_DATE MEETING_TIME] [t/TAG]...`
+
+* Edits the client at the specified INDEX. The index refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3, …​
+* At least one of the [optional] fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing t/ without specifying any tags after it.
+
+Examples:
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
+* `edit 2 n/Jinny Tan t/friends` Edits the name of the 2nd client to be `Jinny Tan` and overrides existing tags with the `friends` tag.
+* `edit 4 n/Betsy Crower t/` Edits the name of the 4th client to be `Betsy Crower` and clears all existing tags.
+
+### Locating clients by name : `find`
+
+Finds clients whose names contain any of the input keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Both full and partial words will be matched e.g. `Han` will match `Hans`
+* Clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+`find Joh` returns `Johnny Daniels` and `John Doe`
+`find alex david` returns `Alex Yeoh`, `David Li`
+
+### Deleting a client : `delete`
+
+Removes an existing client based on their index from InsureBook.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the current displayed client list.
 * The index **must be a positive integer between the numeric range of contacts in the address book.**
 
 Examples:
-* `delete 2`
-* `delete 4`
+* `list` followed by `delete 2` deletes the 2nd client displayed in InsureBook.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the find command.
 
-### Adding a new policy to a person : `addPolicy`
+### View a client's complete profile : `view`
 
-Adds new insurance policy to a specific client
+Expands a client's profile such that the user can see all policies and policy details.
 
-Format: `addPolicy i/INDEX n/POLICY`
+Format: `view INDEX`
+
+Examples:
+* `view 1` will show all policies and policy details of the 1st client displayed in InsureBook.
+* `find Bern` followed by `view 2` will show all policies and policy details of the 2nd client in the results of the find command.
+
+### Adding a new policy to a client : `addPolicy`
+
+Adds a new insurance policy to a specific client.
+
+Format: `addPolicy INDEX pol/POLICY`
 
 * Adds a policy to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -119,7 +178,11 @@ Format: `addPolicy i/INDEX n/POLICY`
 * `POLICY` is the name of the policy to be added
 
 Examples:
-* `addPolicy i/10 n/SuperSaver`
+* `addPolicy 1 pol/SuperSaver type/CI polnum/39376234 pterm/ANNUALLY prem/3000 b/100000`
+
+### Deleting an existing policy from a client : `delPolicy`
+
+### Locating clients via Policy Name : `findPolicy`
 
 ### View the lists of meetings for this week : `meetings`
 
@@ -134,6 +197,22 @@ Meetings will be displayed as: "Number | < Meeting Date & Time > with: < Client 
 <img src="images/MeetingsWindow.png" alt="MeetingsWindow" width="467" height="326"/>
 
 Format: `meetings`
+
+### Clearing all client entries : `clear`
+
+Clears all client entries from InsureBook.
+
+Format:`clear`
+
+### Exiting InsureBook : `exit`
+
+Exits Insurebook and closes the application window.
+
+Format:`exit`
+
+#### Saving data in InsureBook
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
