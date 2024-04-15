@@ -173,7 +173,7 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 ### Finding help : `help`
 
 Opens a pop-up window with the link to InsureBook's User Guide and Command Summary for your reference.
-The linked can be copied with using the 'Enter' key, and can be closed using the 'Esc' key.
+The link can be copied by using the 'Enter' key, and the window can be closed using the 'Esc' key.
 	![Help](images/helpCommand.png) <br><br>
 Format: `help`
 
