@@ -163,9 +163,7 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 
 Opens a pop-up window with the link to InsureBook's User Guide and Command Summary for your reference.
 The linked can be copied with using the 'Enter' key, and can be closed using the 'Esc' key.
-
-   <img src="images/helpCommand.png" alt="Help Window"/>
-
+	![Help](images/helpCommand.png) <br><br>
 Format: `help`
 
 
@@ -176,9 +174,7 @@ Format: `help`
 
 Adds a client, together with their name, phone number, email, address and meeting date and time into InsureBook. <br>
 You may also add optional tags to the client, to provide any extra details as labels.
-
-   <img src="images/addCommand.png" alt="Add a client to InsureBook"/>
-
+	![Add](images/addCommand.png) <br><br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME [t/TAG]...`
 
 <br/>
@@ -229,11 +225,8 @@ Examples:
 ### Listing all clients : `list`
 
 
-
 Shows a list of all clients in InsureBook.
-
-   <img src="images/listCommand.png" alt="List all clients in InsureBook"/>
-
+	![List](images/listCommand.png) <br><br>
 Format: `list`
 
 
@@ -243,9 +236,7 @@ Format: `list`
 
 
 Edits an existing client in InsureBook.
-
-   <img src="images/editCommand.png" alt="Edit a client's details in InsureBook"/>
-
+	![Edit](images/editCommand.png) <br><br>
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MEETING_DATE MEETING_TIME] [t/TAG]...`
 
 
@@ -306,11 +297,8 @@ with the `friends` tag.
 
 
 Finds clients whose names contain any of the input keywords.
-
-   <img src="images/findCommand.png" alt="Find client John in InsureBook"/>
-
+	![Find](images/findCommand.png) <br><br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
-
 
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -334,9 +322,7 @@ Examples:
 ### Deleting a client : `delete`
 
 Removes an existing client based on their index from InsureBook.
-
-   <img src="images/deleteCommand.png" alt="Delete the first client in InsureBook"/>
-
+	![Delete](images/deleteCommand.png) <br><br>
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
@@ -362,9 +348,8 @@ Examples:
 
 Expands a client's profile such that the user can see all policies and policy details.
 
-The policies panel will expand upon calling the `view` function: <br>
-<img src="images/View-Command.png" alt="MeetingsWindow" width="522" height="239"/>
-
+The policies panel will expand upon calling the `view` function:
+	![View](images/View-Command.png) <br><br>
 Format: `view INDEX`
 
 * Views the client's policies at the specified `INDEX`.
@@ -389,9 +374,7 @@ the results of the find command.
 ### Adding a new policy to a client : `addPolicy`
 
 Adds a new insurance policy to a specific client.
-
-   <img src="images/addPolicyCommand.png" alt="Add a policy to the first client in InsureBook"/>
-
+	![Add-Policy](images/addPolicyCommand.png) <br><br>
 Format: `addPolicy INDEX pol/POLICY_NAME type/POLICY_TYPE polnum/POLICY_NUMBER
 pterm/PREMIUM_TERM prem/POLICY_PREMIUM b/BENEFIT`
 
@@ -412,7 +395,7 @@ The index must be an integer in the displayed client list.
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NAME can contain non-alphanumeric characters. <strong> Max: 40 characters</strong>
+POLICY_NAME can contain non-alphanumeric characters.
 </div>
 
 <br/>
@@ -431,13 +414,13 @@ of policies. (e.g. "123456", "123-abc-xyz")
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NUMBER can contain non-alphanumeric characters. <strong> Max: 16 characters</strong>
+POLICY_NUMBER can contain non-alphanumeric characters.
 </div>
 
 <br/>
 
 *  `PREMIUM_TERM` is the premium term of the policy. The premium term of the policy can only be one of the
-following options:
+following options (case insensitive):
 
 	**["Single", "Monthly", "Quarterly", "Semi-annually", "Annually"]**
 
@@ -448,7 +431,7 @@ large numbers or to indicate non-cash payment methods. (e.g. "100mil", "500 CPF 
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-Policy_PREMIUM MUST be alphanumeric characters only!
+POLICY_PREMIUM MUST be alphanumeric characters only!
 </div>
 
 <br/>
@@ -458,7 +441,7 @@ large numbers. (e.g. "100mil", "100M")
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-POLICY_PREMIUM MUST be alphanumeric characters only!
+BENEFIT MUST be alphanumeric characters only!
 </div>
 
 <br/>
@@ -472,9 +455,7 @@ Examples:
 ### Deleting an existing policy from a client : `delPolicy`
 
 Deletes an existing insurance policy of a specific client.
-
-<img src="images/delPolicyCommand.png" alt="Deletes a policy from the first client in InsureBook"/>
-
+	![Delete-Policy](images/delPolicyCommand.png) <br><br>
 Format: `delPolicy INDEX polnum/POLICY_NUMBER`
 
 * Deletes a policy to the person at the specified `INDEX`.
@@ -504,9 +485,7 @@ Examples:
 ### Locating clients via Policy Name : `findPolicy`
 
 Finds the specified policy for all clients
-
-<img src="images/findPolicy.png" alt="Finds all clients in InsureBook with Saver policies"/>
-
+	![Find-Policy](images/findPolicy.png) <br><br>
 Format: `findPolicy POLICY_NAME`
 
 * Finds clients with the specified `POLICY_NAME`.
@@ -558,9 +537,7 @@ Format: `meetings`
 ### Clearing all client entries : `clear`
 
 Clears all client entries from InsureBook.
-
-<img src="images/clearCommand.png" alt="Clears all client entries in InsureBook"/>
-
+	![Clear](images/clearCommand.png) <br><br>
 Format:`clear`
 
 ### Exiting InsureBook : `exit`
@@ -610,8 +587,11 @@ AddressBook data are saved in the hard disk automatically after any command that
 only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created
 by the application before running the application again.
 2. Phone number field is allowed to be a nonsensical number, e.g. "123". Please **ensure you type in your client's phone number carefully** to avoid recording down an incorrect number. Future versions will check the phone number field to make your workflow less error-prone.
-3. Phone number and email are all not unique, i.e. two clients can have the same phone number. Address is non-unique too, but this is intended as you may have clients living together. <br>
+3. Phone number field is allowed to have any amount of digits. However, if the number exceeds a certain amount, the application window will cut off the numbers that exceed the window size. Please ensure that your phone numbers added are logical within the size of the window.
+4. Phone number and email are all not unique, i.e. two clients can have the same phone number. Address is non-unique too, but this is intended as you may have clients living together. <br>
    Again, please **ensure you type in your client's details carefully** to prevent the situation of clients having duplicate phone numbers or email addresses.
+4. If the entered policy name exceeds a certain amount of characters, the application window would cut off the characters that are out of the frame in the policy tag. 
+To view the policy name in full, please use the view command to look at the policy details in full and the full policy name will be displayed.
 
 
 
