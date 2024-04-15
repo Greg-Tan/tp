@@ -193,11 +193,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME
 <div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">📝</span> <strong>Note:</strong>
 
-PHONE_NUMBER does not need to be unique.
+PHONE_NUMBER does not need to be unique across different clients.
 
-EMAIL does not need to be unique.
+EMAIL does not need to be unique across different clients.
 
-ADDRESS does not need to be unique.
+ADDRESS does not need to be unique across different clients.
 </div>
 
 <br/>
